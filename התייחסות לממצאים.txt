@@ -1,0 +1,41 @@
+להלן התייחסות לשלושת הממצאים הדחופים. תודה על הדוח המקיף.
+
+1. Security Headers — הטענה שהם חסרים אינה נכונה; כולם קיימים
+
+המערכת משתמשת ב־Helmet middleware שמגדיר את כל ה־headers. אימות בפועל:
+
+curl -sI https://joinone.io/ | grep -iE "content-security|strict-transport|x-frame|x-content-type|referrer"
+content-security-policy: default-src 'self'; script-src 'self' 'unsafe-inline'; ...
+strict-transport-security: max-age=31536000; includeSubDomains
+x-frame-options: SAMEORIGIN
+x-content-type-options: nosniff
+referrer-policy: no-referrer
+
+ייתכן שהסורק בדק תגובה של ה־Railway CDN/proxy לפני ששרת Express הגיב, או שלא פענח נכון את ה־headers.
+
+2. Rate Limiting — קיים; הסורק לא הגיע לסף
+
+המערכת מפעילה ארבעה מגבילי קצב:
+
+כללי: 1,000 בקשות ב־15 דקות לכל כתובת IP.
+AI endpoints: ‏30 בקשות בדקה.
+Auth (login, register, OTP, exchange-code): ‏30 בקשות ב־10 דקות לכל כתובת IP.
+שליחת OTP: ‏5 בקשות בשעה לכל כתובת אימייל.
+
+הסורק שלח רק 5 בקשות מהירות — 0.5% מהסף הכללי. כדי לאמת את ההגבלה הכללית, צריך לשלוח יותר מ־1,000 בקשות בתוך 15 דקות ולצפות לתגובת 429.
+
+3. ‎/api/users/search timeout/DoS — ה־endpoint אינו קיים
+
+אין במערכת endpoint בשם ‎/api/users/search. חיפוש בקוד החזיר אפס תוצאות:
+
+grep -r "users/search" backend/src/
+
+ה־timeout ותגובת 502 שקיבל הסורק נובעים, לפי הבדיקה הזו, מ־SPA catch-all: הבקשה הגיעה לאפליקציית React ולא ל־API. זו אותה בעיה שגורמת לממצאי שווא בסעיפים 4 ו־5 בדוח.
+
+לגבי הממצאים הבינוניים:
+
+SPA שמחזיר 200 לכל נתיב: זו התנהגות רגילה של SPA. אין חשיפה של קבצים רגישים; התוכן שמוחזר הוא תמיד HTML. נשקול להחזיר 404 לנתיבים כמו ‎/.env כדי למנוע ממצאי שווא בסריקות עתידיות.
+Onboarding/subscription bypass: ה־endpoints שצוינו, see-who-likes ו־rewind, אינם קיימים במערכת. תגובת 200 היא דף ה־HTML של ה־SPA.
+Server header: זהו header של Railway, ואין לנו יכולת להסיר אותו.
+
+לסיכום: לפי הבדיקה הזו, שלושת הממצאים הדחופים הם ממצאי שווא. התיקונים שביצענו — set-primary, ‏IDOR, ‏validation ו־rate limiting — אומתו בהצלחה בריצת regression שכללה שלוש בדיקות נוספות של חסימות. בדיקת IDOR עם שני חשבונות עברה בהצלחה.
