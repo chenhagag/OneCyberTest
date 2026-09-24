@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דוח בדיקת חדירה - https://joinone.io</title>
+<style>
+  :root {
+    --bg: #0f172a; --surface: #1e293b; --border: #334155;
+    --text: #e2e8f0; --muted: #94a3b8;
+    --critical: #ef4444; --high: #f97316; --medium: #eab308;
+    --low: #3b82f6; --info: #6b7280;
+    --exploited: #ef4444; --blocked: #22c55e;
+    --suspected: #f97316; --not-tested: #6b7280;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: var(--text); padding: 2rem; line-height: 1.6; }
+  h1,h2,h3 { margin-bottom: .5rem; }
+  h1 { font-size: 1.8rem; border-bottom: 2px solid var(--border); padding-bottom: .5rem; margin-bottom: 1.5rem; }
+  .meta { background: var(--surface); border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 1.5rem; }
+  .meta span { display: inline-block; margin-left: 2rem; color: var(--muted); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .card { background: var(--surface); border-radius: 8px; padding: 1rem; text-align: center; border-top: 3px solid var(--border); }
+  .card.critical { border-top-color: var(--critical); }
+  .card.high { border-top-color: var(--high); }
+  .card.medium { border-top-color: var(--medium); }
+  .card.low { border-top-color: var(--low); }
+  .card.info { border-top-color: var(--info); }
+  .card .num { font-size: 2rem; font-weight: bold; }
+  .card .label { color: var(--muted); font-size: .85rem; }
+  .finding { background: var(--surface); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border-right: 4px solid var(--border); }
+  .finding.critical { border-right-color: var(--critical); }
+  .finding.high { border-right-color: var(--high); }
+  .finding.medium { border-right-color: var(--medium); }
+  .finding.low { border-right-color: var(--low); }
+  .finding.info { border-right-color: var(--info); }
+  .badge { display: inline-block; padding: .15rem .6rem; border-radius: 4px; font-size: .8rem; font-weight: 600; color: #fff; margin-left: .5rem; }
+  .badge-critical { background: var(--critical); }
+  .badge-high { background: var(--high); }
+  .badge-medium { background: var(--medium); }
+  .badge-low { background: var(--low); }
+  .badge-info { background: var(--info); }
+  .badge-exploited_verified { background: var(--exploited); }
+  .badge-blocked { background: var(--blocked); }
+  .badge-suspected_unverified { background: var(--suspected); }
+  .badge-not_tested { background: var(--not-tested); }
+  .field { margin-top: .5rem; }
+  .field-label { font-weight: 600; color: var(--muted); font-size: .85rem; }
+  pre { background: #0d1117; padding: .75rem; border-radius: 4px; overflow-x: auto; font-size: .85rem; margin-top: .25rem; direction: ltr; text-align: left; white-space: pre-wrap; }
+  ol { padding-right: 1.5rem; }
+  .section { margin-top: 2rem; }
+  .fix-list { list-style: none; padding: 0; }
+  .fix-list li { background: var(--surface); padding: .75rem 1rem; border-radius: 6px; margin-bottom: .5rem; }
+  .scope-box { background: var(--surface); border-radius: 8px; padding: 1.5rem; margin-top: 2rem; }
+</style>
+</head>
+<body>
+
+<h1>דוח בדיקת חדירה</h1>
+
+<div class="meta">
+  <span><strong>יעד:</strong> https://joinone.io</span>
+  <span><strong>תאריך:</strong> 2026-09-17 17:53:52</span>
+  <span><strong>משך:</strong> 0.3 דקות</span>
+  <span><strong>סה"כ ממצאים:</strong> 0</span>
+</div>
+
+<h2>תקציר מנהלים</h2>
+<div class="summary-grid">
+  
+  <div class="card critical">
+    <div class="num">0</div>
+    <div class="label">CRITICAL</div>
+  </div>
+  
+  <div class="card high">
+    <div class="num">0</div>
+    <div class="label">HIGH</div>
+  </div>
+  
+  <div class="card medium">
+    <div class="num">0</div>
+    <div class="label">MEDIUM</div>
+  </div>
+  
+  <div class="card low">
+    <div class="num">0</div>
+    <div class="label">LOW</div>
+  </div>
+  
+  <div class="card info">
+    <div class="num">0</div>
+    <div class="label">INFO</div>
+  </div>
+  
+</div>
+
+
+
+<div class="section">
+  <h2>ממצאים מפורטים</h2>
+  
+</div>
+
+<div class="scope-box">
+  <h2>היקף ומגבלות</h2>
+  <ul>
+    <li>הבדיקה בוצעה באופן אוטומטי באמצעות כלי OneSyberTest.</li>
+    <li>הבדיקה הוגבלת לדומיינים מורשים בלבד כפי שהוגדרו בקונפיגורציה.</li>
+    <li>ממצאים בסטטוס "suspected_unverified" דורשים אימות ידני.</li>
+    <li>הבדיקה אינה מהווה תחליף לבדיקת חדירה ידנית מקיפה.</li>
+    <li>דוח זה מכיל מידע רגיש ומיועד לצוות הפיתוח והאבטחה בלבד.</li>
+  </ul>
+</div>
+
+</body>
+</html>

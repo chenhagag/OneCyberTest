@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "timestamp": "2026-09-17T20:25:24.933169",
+    "target": "https://joinone.io",
+    "duration_seconds": 18.94,
+    "scope": "automated penetration test",
+    "total_findings": 0,
+    "findings_by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "info": 0
+    },
+    "findings_by_status": {}
+  },
+  "results": []
+}

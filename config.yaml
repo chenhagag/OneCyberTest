@@ -1,0 +1,38 @@
+target:
+  allowed_domains:
+    - "joinone.io"
+    # - "one-production-a51f.up.railway.app"  # add only if explicitly approved
+  base_url: "https://joinone.io"
+
+accounts:
+  test_user_1:
+    email_env: "PENTEST_USER1_EMAIL"
+    password_env: "PENTEST_USER1_PASSWORD"
+  test_user_2:
+    email_env: "PENTEST_USER2_EMAIL"
+    password_env: "PENTEST_USER2_PASSWORD"
+
+safety:
+  max_requests_per_second: 2
+  max_total_requests: 5000
+  max_runtime_minutes: 60
+  max_consecutive_errors: 10
+  concurrent_requests: 1
+  request_timeout_seconds: 30
+
+report:
+  output_dir: "./reports"
+  language: "he"
+
+# Test modules to run (comment out to skip)
+enabled_tests:
+  - unauth_access
+  - auth_bypass
+  - idor
+  - admin_access
+  - input_validation
+  - info_disclosure
+  - session_mgmt
+  - prompt_injection
+  - rate_limiting
+  - matching_bypass
